@@ -1,0 +1,103 @@
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>hello {{name}}</h1>
+                <input type="text" name="text" ng-model="name">
+                <!--<div>{{users}}</div>-->
+                <!--<div ng-repeat="user in users">-->
+                <!--<p>{{user.name}}</p>-->
+                <!--<p>{{user.username}}</p>-->
+                <!--<p>{{user.email}}</p>-->
+                <!--</div>-->
+                <br>
+                <input type="text" ng-model="search.$"> <!--//find in all-->
+                <input type="text" ng-model="search.name">
+                <input type="text" ng-model="search.email">
+            </div><!-- col -->
+            <div class="col-md-6">
+                <div class="add">
+                    <button class="btn btn-default" ng-click="openUserModal()">Add user</button>
+                </div>
+            </div><!-- col -->
+            <div class="col-md-12">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr >
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Nick Name</th>
+                        <th>email</th>
+                        <th>action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="user in users | filter: search" ng-click="userInfo(user.id)">
+                        <th>{{$index + 1}}</th>
+                        <td>
+                            <a ui-sref="app.user({id: {{user.id}}})">
+                            {{user.name}}
+                             </a>
+                            <span ng-show="$first">first</span>
+                            <span ng-show="$middle">middle</span>
+                            <span ng-show="$last">last</span>
+                            <span ng-show="$even">even</span>
+                            <span ng-show="$odd">odd</span>
+                        </td>
+                        <td>
+                            {{user.username}}
+                        </td>
+                        <td>{{user.email}}</td>
+                        <td>
+                            <a href="">delete</a> <a href="">edit</a>
+                        </td>
+
+
+                    </tr>
+                    </tbody>
+                </table>
+
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                <!--<div ng-repeat="valueq in [tgg,tgrg,gdg3,thgfh33]">-->
+                    <!--<p>{{valueq}}</p>-->
+                <!--</div>-->
+
+                <div ng-repeat="value in [1,2,3,3,4,5,6,6,4] track by $index">
+                    <!--track by $index value.id-->
+                    <p>{{value}}</p>
+                </div>
+                <div ng-repeat="user in users | limitTo:10">
+                    <p>{{user.name | limitTo:10}}</p>
+                </div>
+                <div ng-repeat="user in users | orderBy:'name'">
+                    <p>{{user.name | limitTo:5}}}</p>
+                </div>
+                <div ng-repeat="user in users  ">
+                    <p>{{user.name | lowercase}}</p>
+                </div>
+                <div ng-repeat="user in users  ">
+                    <p>{{user.name | customFilter}}</p>
+                </div>
+                <style>
+                    input.ng-invalid.ng-dirty {
+                        border: 1px solid red;
+                    }
+                </style>
+                <form name="myForm" ng-submit="onSubmit(a)">
+                    <!--<input type="password" -->
+                           <!--ng-minlength="5" -->
+                           <!--ng-maxlength="16"-->
+                           <!--pattern="regExp">-->
+                    <input type="email" name="myInput" ng-model="a.email" required >
+                    <span ng-show="myForm.myInput.$error.email">not email</span>
+                    <span ng-show="myForm.myInput.$error.required && myForm.myInput.$dirty">not required</span>
+                    <input type="password" name="myInputPass" minlength="5" maxlength="16" ng-model="a.password">
+                    <span ng-show="myForm.myInputPass.$error.maxlength">max</span>
+                    <span ng-show="myForm.myInputPass.$error.minlength">min</span>
+                    <button ng-disabled="myForm.$invalid">submit</button>
+                </form>
+
+            </div><!-- col -->
+        </div><!-- row -->
+    </div><!-- container -->
+</section>
