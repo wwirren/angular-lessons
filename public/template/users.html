@@ -49,13 +49,15 @@
                         </td>
                         <td>{{user.email}}</td>
                         <td>
-                            <a href="">delete</a> <a href="">edit</a>
+                            <a href="" ng-click="deleteUser(user.id); $event.stopPropagation()">delete</a> <a href="" ng-click="openEditModal(user, $index); $event.stopPropagation()">edit</a>
                         </td>
 
 
                     </tr>
                     </tbody>
                 </table>
+
+
 
                 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <!--<div ng-repeat="valueq in [tgg,tgrg,gdg3,thgfh33]">-->
@@ -76,7 +78,7 @@
                     <p>{{user.name | lowercase}}</p>
                 </div>
                 <div ng-repeat="user in users  ">
-                    <p>{{user.name | customFilter}}</p>
+                    <p ng-click="clickk($event)">{{user.name | customFilter}}</p>
                 </div>
                 <style>
                     input.ng-invalid.ng-dirty {
@@ -96,6 +98,39 @@
                     <span ng-show="myForm.myInputPass.$error.minlength">min</span>
                     <button ng-disabled="myForm.$invalid">submit</button>
                 </form>
+
+
+                <div ng-click="clickk($event)">click me</div>
+                <div>{{nameT}}</div>
+
+                {{nameV}}
+                {{firstName}}
+
+                //////ng-options only for selects
+
+                <select ng-model = "select" ng-options="post.id as post.name for post in users">
+                    <option value="">Get</option>
+                </select>
+
+                /////
+                <br>
+                <br><br><br><br>
+                <input type="text" ng-model="nameSwitch">
+                <div ng-switch on="nameSwitch">
+                    <div ng-switch-when="Alex">Alex</div>
+                    <div ng-switch-when="Vadim">Vadim</div>
+                    <div ng-switch-default>default</div>
+                </div>
+
+                <br><br><br><br><br>
+                <div ng-repeat="user in users | startFrom: (currentPage - 1)*pageSize | limitTo:pageSize">
+                    <p>{{user.name}}</p>
+                </div>
+                <ul uib-pagination total-items="totalItems" ng-model="currentPage" items-per-page="pageSize" max-size="5" class="pagination-sm" >
+
+                </ul>
+
+
 
             </div><!-- col -->
         </div><!-- row -->

@@ -2,7 +2,8 @@ angular.module('services', []).
     service('generalItems', function () {
         var domain = 'http://jsonplaceholder.typicode.com/';
         this.options = {
-            urlUsers: domain+'users/',
+            urlUsers: domain+'users',
+            // urlUsers: domain+'posts/',
             urlUser: function (id) {
                 return domain + 'users/' + id + '/';
             }
@@ -13,10 +14,10 @@ angular.module('services', []).
 
     }).
     filter ('customFilter',function(){
-        return function(input,a){
-            return 'Hi!'+input
-        }
-    });
+    return function(input,a){
+        return 'Hi!'+input
+    }
+});
 
 
 

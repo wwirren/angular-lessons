@@ -22,7 +22,13 @@ angular.module('directives', [])
             },
             template: '<div> {{fullname}}</div>'
         }
-    });
+    })
+    ///
+    .filter ('startFrom', function () {
+    return function (data, start ) {
+        return data.slice(start)
+    }
+});
 
 
 

@@ -17,7 +17,33 @@ app.config(function($stateProvider, $urlRouterProvider){
         .state('app.users',{
             url: '/users',
             templateUrl: 'template/users.html',
-            controller: 'UsersCtrl'
+            controller: 'UsersCtrl',
+            resolve: {
+                getUsersResolve: function ($q, userRestApiFactory) {
+                    var defer = $q.defer();   //// если нам нужно чтобы код подождал, резолв выполняется до контроллера
+                    userRestApiFactory.getUsers()
+                        .success(
+                        function (data) {
+                            defer.resolve(data);
+                        })
+                        .error(
+                        function (data) {
+                            defer.reject()
+                        })
+                    return defer.promise;
+                }
+            }
+            // resolve: {
+            //     myResolve: function ($q, $timeout) {
+            //         var defer = $q.defer();   //// если нам нужно чтобы код подождал, резолв выполняется до контроллера
+            //         $timeout(
+            //            function () {
+            //                defer.resolve("a");
+            //                console.log("a");
+            //            }, 4000);
+            //         return defer.promise;
+            //     }
+            // }
         })
         .state('app.user',{
             url: '/users/{id}',
