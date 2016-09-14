@@ -1,6 +1,7 @@
-node_modules
-dist
-.tmp
+dist/
+.tmp/
 .sass-cache
-bower_components
-.DS_Store
+.idea/
+public/bower_components/
+public/node_modules/
+
