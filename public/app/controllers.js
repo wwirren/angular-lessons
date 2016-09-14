@@ -125,7 +125,6 @@ angular.module('controllers', [])
                 animation: true
             });
 
-
         };
 
         $scope.editUser = function (editUser){
@@ -135,24 +134,21 @@ angular.module('controllers', [])
                     // $scope.users.splice(index, 1, data);
                     $scope.users[index]=data;
                     $scope.addNewUserModal.close();
-
                     console.log(data, '&&&&')
                 }).error(function () {
                     console.log("errrrrrr")
                 })
         };
 
-        $scope.deleteUser =function (id) {
+        $scope.deleteUser =function (id, index) {
             userRestApiFactory.deleteCurrentUser(id, index).
                 success(function () {
                     $scope.users.splice(index,1);
-                    console.log("ok")
+                    console.log("user deleted")
                 }).error(function () {
-                    console.log("errrrrrr")
+                    console.log("error user deleted")
                 })
         }
-
-
 
     })
     .controller('UserCtrl',function($scope, userRestApiFactory, $stateParams){

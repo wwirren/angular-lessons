@@ -48,9 +48,9 @@ angular.module('factory', []).
             deleteCurrentUser: function (id) {
                 return $http({
                     method: "DELETE",
-                    url: generalItems.options.urlUser(id),
-                    data: data//data: user,
-
+                    //url: generalItems.options.urlUser(id),
+                    url: generalItems.options.urlUser(id)
+                    //data: data//data: user,
                     // headers: {
                     //     'Content-Type': 'application.json; charset=utf-8'
                     // }
