@@ -128,15 +128,18 @@ angular.module('controllers', [])
         };
 
         $scope.editUser = function (editUser){
+
             // userRestApiFactory.editCurrentUser(editUser, currentUser.index).
-            userRestApiFactory.editCurrentUser(editUser,$scope.currentUser.index).
+            userRestApiFactory.editCurrentUser(editUser, $scope.currentUser.index).
                 success(function (data) {
                     // $scope.users.splice(index, 1, data);
+
+                    //$scope.users[index]=data;
                     $scope.users[index]=data;
                     $scope.addNewUserModal.close();
                     console.log(data, '&&&&')
                 }).error(function () {
-                    console.log("errrrrrr")
+                    console.log(data, "errrrrrr")
                 })
         };
 

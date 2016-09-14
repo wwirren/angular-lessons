@@ -40,20 +40,19 @@ angular.module('factory', []).
                 return $http({
                     method: "PUT",
                     url: generalItems.options.urlUser(id),
-                    data: data//data: user,
-
+                    //data: data,//data: user,
+                    //headers: {
+                    //    'Content-Type': 'application.json; charset=utf-8'
+                    //}
+                    data: data
                 });
             }
             ,
             deleteCurrentUser: function (id) {
                 return $http({
                     method: "DELETE",
-                    //url: generalItems.options.urlUser(id),
                     url: generalItems.options.urlUser(id)
-                    //data: data//data: user,
-                    // headers: {
-                    //     'Content-Type': 'application.json; charset=utf-8'
-                    // }
+
                 });
             }
         };
